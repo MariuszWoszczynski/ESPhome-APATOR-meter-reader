@@ -15,6 +15,7 @@
 
 
 uint8_t MBpacket[291];
+int rssi = 0;
 
 //****************************CC1101 config************************************
 uint8_t mosi = 13; 
@@ -23,7 +24,7 @@ uint8_t clk = 14;
 uint8_t cs = 2;
 uint8_t gdo0 = 5;
 uint8_t gdo2 = 4;
-int rssi = 0;
+
 //*****************************************************************************
 
 //**********************determine the ID of your water meter (from a sticker)******************
