@@ -7,5 +7,6 @@ On base:
 https://github.com/SzczepanLeon/wMbus-lib
 https://github.com/olekdata/ESP8266-D1-Mini-Apator
 
-File: apator.h, place in esphome/custom_components/ directory. 
-Copy the data from the apator-meter.yaml file to the .yaml file generated in esphome's own sensor....
+1. File: apator.h, place in esphome/custom_components/ directory. 
+2. Config CC1101 and your water meter ID in apator.h file
+3. Copy the data from the apator-meter.yaml file to the .yaml file generated in esphome's own sensor....
