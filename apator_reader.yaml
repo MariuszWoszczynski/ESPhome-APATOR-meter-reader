@@ -1,0 +1,53 @@
+esphome:
+  name: "apator-reader"
+  platform: ESP8266
+  board: nodemcuv2
+     
+  includes:
+    - custom_components/apator.h
+
+  libraries:
+    -  SPI
+    - "https://github.com/bblanchon/ArduinoJson.git"
+    - "https://github.com/LSatan/SmartRC-CC1101-Driver-Lib.git"
+    - "https://github.com/SzczepanLeon/wMbus-lib.git"
+    - "https://github.com/MariuszWoszczynski/Apator-meter-reader-core.git"
+
+# Enable logging
+logger: 
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "****************************************"
+
+ota:
+  password: "****************************************"
+
+wifi:
+  ssid: "****************************************"
+  password: "****************************************"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "****************************************"
+    password: "****************************************"
+
+captive_portal:
+
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto sensor = new MySensor();
+      App.register_component(sensor);
+      return {sensor->my_sensor_state, sensor->my_sensor_id};
+    sensors:
+      - name: Water meter state
+        unit_of_measurement: L
+        accuracy_decimals: 0
+      - name: Water meter ID
+        accuracy_decimals: 0
+
+
