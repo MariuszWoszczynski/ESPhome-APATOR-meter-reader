@@ -16,16 +16,19 @@
 
 uint8_t MBpacket[291];
 
-//CC1101 config
+//****************************CC1101 config************************************
 uint8_t mosi = 13; 
 uint8_t miso = 12;
 uint8_t clk = 14;
-uint8_t cs = 15;
+uint8_t cs = 2;
 uint8_t gdo0 = 5;
 uint8_t gdo2 = 4;
 int rssi = 0;
+//*****************************************************************************
 
-int ApatorID = 1234567;    							//**********************determine the ID of your water meter******************
+//**********************determine the ID of your water meter (from a sticker)******************
+int ApatorID = 1234567;    					
+//*****************************************************************************
 
 class MySensor :public Component, public Sensor {
   public: 
