@@ -28,7 +28,7 @@ uint8_t gdo2 = 4;
 //*****************************************************************************
 
 //**********************determine the ID of your water meter (from a sticker)******************
-int ApatorID = 1234567;    					
+int ApatorID = 0x1111111;    		//put your Id instead 1111111	 					
 //*****************************************************************************
 
 class MySensor :public Component, public Sensor {
@@ -58,7 +58,8 @@ void loop() {
     sprintf(dll_id + 2, "%02X", frame[6]);
     sprintf(dll_id + 4, "%02X", frame[5]);
     sprintf(dll_id + 6, "%02X", frame[4]);
-    int MeterID = atoi(dll_id);
+    //int MeterID = atoi(dll_id);
+    int MeterID = strtol(dll_id, NULL, 16);
     
     ESP_LOGI("Info", "Package received. Meter ID = %s", dll_id);
     ESP_LOGI("Info", "Signal strenght: %d", rssi);
