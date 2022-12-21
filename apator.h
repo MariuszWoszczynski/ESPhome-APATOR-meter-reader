@@ -73,7 +73,7 @@ void loop() {
     itoa(MeterID, ID_text, 16);
     
     ESP_LOGI("Info", "Package received");
-    ESP_LOGI("Info", "Meter ID (DEC) = %d", MeterID);
+    //ESP_LOGI("Info", "Meter ID (DEC) = %d", MeterID);
     ESP_LOGI("Info", "Meter ID (HEX) = %X", MeterID);
     ESP_LOGI("Info", "Signal strenght: %d", rssi);
     
