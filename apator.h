@@ -83,15 +83,13 @@ void loop() {
           std::vector<uchar>::iterator fv;
           fv = std::find(pos, frame.end(), 0x10);
           if (fv != frame.end()){
-            int v;
             int v_temp;
             memcpy(&v_temp, &fv[1], 4);
             if ((v_temp > 0) and (v_temp < 10000000)) {     //data filter
-              v = v_temp;
-            } 
-            ESP_LOGI("Info", "Meter state: %d L", v);
-            my_sensor_state->publish_state(v);
-            my_sensor_id->publish_state(MeterID);
+              ESP_LOGI("Info", "Meter state: %d L", v_temp);
+              my_sensor_state->publish_state(v_temp);
+              my_sensor_id->publish_state(MeterID);
+            }
           }
         }
     } else {
