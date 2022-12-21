@@ -58,10 +58,12 @@ void loop() {
     sprintf(dll_id + 2, "%02X", frame[6]);
     sprintf(dll_id + 4, "%02X", frame[5]);
     sprintf(dll_id + 6, "%02X", frame[4]);
-    //int MeterID = atoi(dll_id);
-    int MeterID = strtol(dll_id, NULL, 16);
     
-    ESP_LOGI("Info", "Package received. Meter ID = %s", dll_id);
+    int MeterID = strtol(dll_id, NULL, 16);
+
+    ESP_LOGI("Info", "Package received");
+    ESP_LOGI("Info", "Meter ID (DEC) = %d", MeterID);
+    ESP_LOGI("Info", "Meter ID (HEX) = %X", MeterID);
     ESP_LOGI("Info", "Signal strenght: %d", rssi);
     
     
