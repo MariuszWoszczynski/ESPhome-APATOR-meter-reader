@@ -31,10 +31,18 @@ uint8_t gdo2 = 4;
 int ApatorID = 0x1111111;    		//put your Id instead 1111111	 					
 //*****************************************************************************
 
+namespace MyTextData {
+      TextSensor *my_text_sensor = new TextSensor();
+    }
+    
+class MyTextSensor :public Component, public TextSensor {
+      public:
+        TextSensor *my_text_sensor = MyTextData::my_text_sensor;
+    };
+  
 class MySensor :public Component, public Sensor {
   public: 
     Sensor *my_sensor_state = new Sensor();
-    Sensor *my_sensor_id = new Sensor();
   protected: HighFrequencyLoopRequester high_freq_;
  
 
@@ -43,6 +51,7 @@ void setup() {
   memset(MBpacket, 0, sizeof(MBpacket));
   rf_mbus_init(mosi, miso, clk, cs, gdo0, gdo2);
 }
+
 
 
 void loop() {
@@ -60,7 +69,9 @@ void loop() {
     sprintf(dll_id + 6, "%02X", frame[4]);
     
     int MeterID = strtol(dll_id, NULL, 16);
-
+    char ID_text[32];
+    itoa(MeterID, ID_text, 16);
+    
     ESP_LOGI("Info", "Package received");
     ESP_LOGI("Info", "Meter ID (DEC) = %d", MeterID);
     ESP_LOGI("Info", "Meter ID (HEX) = %X", MeterID);
@@ -90,7 +101,7 @@ void loop() {
             if ((v_temp > 0) and (v_temp < 10000000)) {     //data filter
               ESP_LOGI("Info", "Meter state: %d L", v_temp);
               my_sensor_state->publish_state(v_temp);
-              my_sensor_id->publish_state(MeterID);
+              MyTextData::my_text_sensor->publish_state(ID_text);
             }
           }
         }
