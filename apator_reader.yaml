@@ -35,19 +35,26 @@ wifi:
     password: "****************************************"
 
 captive_portal:
-
+text_sensor:
+  - platform: custom
+    lambda: |-
+      auto textsensor = new MyTextSensor();
+      App.register_component(textsensor);
+      return {textsensor->my_text_sensor};
+    text_sensors:
+      - name: Meter ID                    #text 
+        filters:
+        - to_upper:
 
 sensor:
   - platform: custom
     lambda: |-
       auto sensor = new MySensor();
       App.register_component(sensor);
-      return {sensor->my_sensor_state, sensor->my_sensor_id};
+      return {sensor->my_sensor_state};
     sensors:
-      - name: Water meter state
+      - name: Water meter state          #float value
         unit_of_measurement: L
-        accuracy_decimals: 0
-      - name: Water meter ID
         accuracy_decimals: 0
 
 
