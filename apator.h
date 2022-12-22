@@ -98,7 +98,7 @@ void loop() {
           if (fv != frame.end()){
             int v_temp;
             memcpy(&v_temp, &fv[1], 4);
-            if ((v_temp > 0) and (v_temp < 10000000)) {     //data filter
+            if (v_temp > 0 and v_temp < 10000000) {     //data filter
               ESP_LOGI("Info", "Meter state: %d L", v_temp);
               my_sensor_state->publish_state(v_temp);
               MyTextData::my_text_sensor->publish_state(dll_id);
